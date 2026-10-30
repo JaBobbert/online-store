@@ -96,10 +96,10 @@ I am proud of the fact that it says the quantity of the amount you have instead 
 
 <!-- What you would add or fix next, one bullet each. Unfinished bonuses belong here. -->
 
--Have it to where you can change the amount of the quantity
--
--Make a remove system within the cart for if you don't want something anymore
--
+
+-Have it to where you can change the amount of the quantity.
+Make a remove system within the cart for if you don't want something anymore
+
 
 ## Resources
 
