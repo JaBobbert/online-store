@@ -91,7 +91,8 @@ public class Store {
 
             if (cart.contains(selectedProduct)) {
                 selectedProduct.addQuantity();
-            } else {
+            }
+            else {
                 cart.add(selectedProduct);
                 selectedProduct.addQuantity();
             }
@@ -144,15 +145,20 @@ public class Store {
         String confirm = scanner.nextLine();
 
         if (confirm.equalsIgnoreCase("Y")) {
+            System.out.println("Your cart has been cleared. Thank you for your purchase!");
+            for (Product product : cart) {
+                System.out.println(product + " | x" + product.quantity());
+            }
             System.out.printf("Total: $%.2f%n", totalAmount);
             cart.clear();
-            System.out.println("Your cart has been cleared. Thank you for your purchase!");
 
-        } else if (confirm.equalsIgnoreCase("N")) {
+        }
+        else if (confirm.equalsIgnoreCase("N")) {
             System.out.println("Okay take your time.");
 
 
-        } else {
+        }
+        else {
             System.out.println("Invalid choice.");
         }
     }
