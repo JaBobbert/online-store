@@ -70,10 +70,7 @@ public class Store {
          }
     }
 
-    /**
-     * Displays all products and lets the user add one to the cart.
-     * Typing X returns to the main menu.
-     */
+
     public static void displayProducts(ArrayList<Product> inventory,
                                        ArrayList<Product> cart,
                                        Scanner scanner) {
@@ -81,7 +78,7 @@ public class Store {
             System.out.println(product);
         }
 
-        System.out.print("Enter product ID to add to cart (X or x to return): ");
+        System.out.print("Enter product ID to add to cart or (X) to return: ");
         String id = scanner.nextLine();
         for (Product product : inventory) {
             if (product.id().equals(id)){
@@ -97,41 +94,55 @@ public class Store {
         }
     }
 
-    /**
-     * Shows the contents of the cart, calculates the total,
-     * and offers the option to check out.
-     */
+
     public static void displayCart(ArrayList<Product> cart, Scanner scanner) {
+
+        double subtotal = 0;
+
+        // Display products and calculate subtotal
         for (Product product : cart) {
             System.out.println(product + " | x" + product.quantity());
+            subtotal += product.price() * product.quantity();
+        }
 
-            System.out.print("Enter (C or c) to check out or (X or x) to return back to the homepage: ");
-            String pick = scanner.nextLine();
+        // Calculate tax and total
+        double tax = subtotal * 0.07;
+        double totalAmount = subtotal + tax;
 
-            if (pick.equalsIgnoreCase("C")) {
-                double subtotal = product.price() * product.quantity();
-                double tax = subtotal * 0.07;
-                double totalAmount = subtotal + tax;
-                System.out.printf("Your total is: $%.2f%n", totalAmount);
-            }
-            else if(pick.equalsIgnoreCase("X")){
-                System.out.println("You are being sent back to the home page.");
-                return;
-            }
+        System.out.printf("Subtotal: $%.2f%n", subtotal);
+        System.out.printf("Tax: $%.2f%n", tax);
+        System.out.printf("Total: $%.2f%n", totalAmount);
+
+        // Ask the user to pick to check out or return home
+        System.out.print("Enter (C) to check out or (X) to return to homepage: ");
+        String pick = scanner.nextLine();
+
+        if (pick.equalsIgnoreCase("C")) {
+            checkOut(cart, totalAmount, scanner);
+
+        } else if (pick.equalsIgnoreCase("X")) {
+            System.out.println("You are being sent back to the home page.");
         }
     }
 
-    /**
-     * Handles the checkout process:
-     * 1. Confirm that the user wants to buy.
-     * 2. Accept payment and calculate change.
-     * 3. Display a simple receipt.
-     * 4. Clear the cart.
-     */
-    public static void checkOut(ArrayList<Product> cart,
-                                double totalAmount,
-                                Scanner scanner) {
-        // TODO: implement steps listed above
+
+    public static void checkOut(ArrayList<Product> cart, double totalAmount, Scanner scanner) {
+
+        System.out.printf("Your total is: $%.2f%n", totalAmount);
+        System.out.print("Confirm purchase? (Y/N): ");
+        String confirm = scanner.nextLine();
+
+        if (confirm.equalsIgnoreCase("Y")) {
+            System.out.printf("Total: $%.2f%n", totalAmount);
+            cart.clear();
+            System.out.println("Your cart has been cleared. Thank you for your purchase!");
+
+        } else if (confirm.equalsIgnoreCase("N")) {
+            System.out.println("You are returning to the home page.");
+
+        } else {
+            System.out.println("Invalid choice.");
+        }
     }
 
     /**
