@@ -103,7 +103,7 @@ public class Store {
         for (Product product : cart) {
             System.out.println(product + " | x" + product.quantity());
             subtotal += product.price() * product.quantity();
-        }
+
 
         // Calculate tax and total
         double tax = subtotal * 0.07;
@@ -119,11 +119,14 @@ public class Store {
 
         if (pick.equalsIgnoreCase("C")) {
             checkOut(cart, totalAmount, scanner);
+            return;
 
         } else if (pick.equalsIgnoreCase("X")) {
             System.out.println("You are being sent back to the home page.");
+            return;
         }
     }
+}
 
 
     public static void checkOut(ArrayList<Product> cart, double totalAmount, Scanner scanner) {
@@ -138,7 +141,8 @@ public class Store {
             System.out.println("Your cart has been cleared. Thank you for your purchase!");
 
         } else if (confirm.equalsIgnoreCase("N")) {
-            System.out.println("You are returning to the home page.");
+            System.out.println("Okay take your time.");
+
 
         } else {
             System.out.println("Invalid choice.");
