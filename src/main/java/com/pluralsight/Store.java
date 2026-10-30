@@ -1,18 +1,12 @@
 package com.pluralsight;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * Starter code for the Online Store workshop.
- * Learners will complete the TODO sections to make the program work.
- * <p>
- * What is already done for you: the two lists, the Home Screen loop and
- * the method headers. Each TODO says what that method has to do.
- * Product.java is complete; products.csv sits at the project root.
- * You will need extra imports (for example java.io.BufferedReader,
- * java.io.FileReader, java.io.IOException) as you fill the TODOs in.
- */
+
 public class Store {
 
     public static void main(String[] args) {
@@ -61,8 +55,22 @@ public class Store {
      * AV1051|JBL Bluetooth Speaker|89.95|Audio Video
      */
     public static void loadInventory(String fileName, ArrayList<Product> inventory) {
-        // TODO: skip the header line, then read each line, split on "|",
-        //       create a Product object, and add it to the inventory list
+         inventory = new ArrayList<>();
+
+         fileName = "inventory.csv";
+
+         try{
+             BufferedReader reader = new BufferedReader(new FileReader(fileName));
+             String line;
+
+             while ((line = reader.readLine()) != null){
+                 String[] parts = line.split("\\|");
+                 int
+             }
+
+         }catch(IOException e){
+             System.err.println("Something went wrong " + e.getMessage());
+         }
     }
 
     /**
