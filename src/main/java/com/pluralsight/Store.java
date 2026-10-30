@@ -71,28 +71,37 @@ public class Store {
     }
 
 
-    public static void displayProducts(ArrayList<Product> inventory,
-                                       ArrayList<Product> cart,
-                                       Scanner scanner) {
+    public static void displayProducts(ArrayList<Product> inventory, ArrayList<Product> cart, Scanner scanner) {
+
         for (Product product : inventory) {
             System.out.println(product);
         }
 
         System.out.print("Enter product ID to add to cart or (X) to return: ");
         String id = scanner.nextLine();
-        for (Product product : inventory) {
-            if (product.id().equals(id)){
-                cart.add(product);
-                product.addQuantity();
-                System.out.println(product.item() + " was added to your cart!");
+
+        if (id.equalsIgnoreCase("X")) {
+            System.out.println("You are being sent back to the home page.");
+            return;
+        }
+
+        Product selectedProduct = findProductById(id, inventory);
+
+        if (selectedProduct != null) {
+
+            if (cart.contains(selectedProduct)) {
+                selectedProduct.addQuantity();
+            } else {
+                cart.add(selectedProduct);
+                selectedProduct.addQuantity();
             }
-            else if(id.equalsIgnoreCase("X")){
-                System.out.println("You are being sent back to the home page.");
-                return;
-            }
+
+            System.out.println(selectedProduct.item() + " was added to your cart!");
+
+        } else {
+            System.out.println("Product not found.");
         }
     }
-
 
     public static void displayCart(ArrayList<Product> cart, Scanner scanner) {
 
