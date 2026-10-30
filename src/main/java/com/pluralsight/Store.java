@@ -83,9 +83,8 @@ public class Store {
         for (Product product : inventory) {
             if (product.id().equals(id)){
                 cart.add(product);
-                System.out.println(product.item() + " was added to your cart!");
                 product.addQuantity();
-
+                System.out.println(product.item() + " was added to your cart!");
             }
             else if(id.equalsIgnoreCase("X")){
                 System.out.println("You are being sent back to the home page.");
@@ -103,6 +102,7 @@ public class Store {
         for (Product product : cart) {
             System.out.println(product + " | x" + product.quantity());
             subtotal += product.price() * product.quantity();
+        }
 
 
         // Calculate tax and total
@@ -125,7 +125,6 @@ public class Store {
             System.out.println("You are being sent back to the home page.");
             return;
         }
-    }
 }
 
 

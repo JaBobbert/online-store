@@ -1,4 +1,5 @@
-# Project Title
+# Online Store
+It is an online store simulation and it is for people to add to cart and confirm purchase
 
 <!-- HOW TO USE THIS TEMPLATE
      Save it as README.md at the root of your project, next to pom.xml. Replace every comment like this one
@@ -7,12 +8,17 @@
      need one, delete the whole section, heading included. Every other section stays. -->
 
 <!-- One sentence under the title: what the app is, for whom.
-     Example: A console app that keeps a store's inventory in a csv file and lets a clerk search it. -->
+
 
 ## Description of the Project
 
 <!-- Three to five sentences. What the application does, who uses it, what problem it solves.
-     Write it for someone who has never seen the workbook: a recruiter, a classmate, you in six months. -->
+Write it for someone who has never seen the workbook: a recruiter, a classmate, you in six months. -->
+A code to store items in a csv which gets read by java and printed onto the console
+Allows the user to place items into their own cart
+Keeps track of how many items was store in their cart
+Shows price, subtotal, and the tax(%7) to the item and then gives the final amount
+Displays if the user would want to truly confirm their purchase.
 
 
 ## Features
@@ -20,13 +26,9 @@
 <!-- One bullet per thing the app can do, in the order of your menu. Mark bonuses.
      For an API (Capstone 3), one line per endpoint instead: method, path, what it does.
      Be honest: list what works. If something is half done, say so under Future Work instead.
-     Example:
-     - Shows every product in the store
-     - Searches products by name (bonus) -->
+- Shows every item from the store
+- Shows how many times you place the item into your cart
 
--
--
--
 
 ## User Stories
 
@@ -34,8 +36,8 @@
      As a [type of user], I want [some goal] so that [some reason].
      Same text as the cards on your GitHub project board. -->
 
-- As a ..., I want ..., so that ...
-- As a ..., I want ..., so that ...
+- As a customer, I want to have my own cart and store items from the store in it so that I can purchase them.
+- As a user, I want to keep track of how many items I stored into my cart so that I can have an idea of what I am all getting
 
 ## Setup
 
@@ -52,16 +54,7 @@
 4. Open `src/main/java/com/pluralsight/YourMainClassName.java`. <!-- replace YourMainClassName with the class that has main -->
 5. Right-click inside the file and choose Run 'YourMainClassName.main()'.
 
-### Data and configuration
 
-<!-- OPTIONAL. Anything the program needs that is not code: data files and where they must sit, files the
-     program creates, a database script to run first, a settings file to edit (connection, port).
-     If there is nothing, delete this subsection, heading included.
-     Example:
-     - `inventory.csv` sits at the project root, next to `pom.xml`. The program reads it at start.
-     - `logs.txt` is created by the program at the project root on the first run. -->
-
--
 
 ## Technologies Used
 
@@ -92,7 +85,8 @@
 
 <!-- Paste one short block of your own code (5 to 15 lines) between the three backticks, then write two
      or three sentences: what it does and why you chose to write it that way. This is what you show on
-     demo day and what you talk about in an interview. -->
+     demo day and what you talk about in an interview. --> 
+I am proud of the fact that it says the quantity of the amount you have instead of repeating the item constantly
 
 ```java
 
@@ -102,7 +96,9 @@
 
 <!-- What you would add or fix next, one bullet each. Unfinished bonuses belong here. -->
 
+-Have it to where you can change the amount of the quantity
 -
+-Make a remove system within the cart for if you don't want something anymore
 -
 
 ## Resources
@@ -116,7 +112,7 @@
 
 <!-- Your name and, if you like, your GitHub profile link. For a team workshop, one line per person with what each one built. -->
 
-- **Your Name**
+- **Jacob Davis**
 
 ## Thanks
 
