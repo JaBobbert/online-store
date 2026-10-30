@@ -5,6 +5,7 @@ public class Product {
     private String item;
     private double price;
     private String department;
+    private int quantity;
 
     public Product(String id, String item, double price, String department){
         this.id = id;
@@ -28,8 +29,16 @@ public class Product {
         return department;
     }
 
+    public int quantity() {
+        return quantity;
+    }
+
+    public void addQuantity(){
+        quantity++;
+    }
+
     @Override
     public String toString() {
-        return id + " | " + item + " | " + price + " | " + department + " | ";
+        return id + " | " + item + " | " + price + " | " + department;
     }
 }

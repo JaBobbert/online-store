@@ -46,27 +46,24 @@ public class Store {
         scanner.close();
     }
 
-    /**
-     * Reads product data from a file and populates the inventory list.
-     * File format (pipe-delimited), the first line is a header row:
-     * SKU|Product Name|Price|Department
-     * <p>
-     * Example line:
-     * AV1051|JBL Bluetooth Speaker|89.95|Audio Video
-     */
-    public static void loadInventory(String fileName, ArrayList<Product> inventory) {
-         inventory = new ArrayList<>();
 
-         fileName = "inventory.csv";
+    public static void loadInventory(String fileName, ArrayList<Product> inventory) {
+
 
          try{
              BufferedReader reader = new BufferedReader(new FileReader(fileName));
+             reader.readLine();//Skips the header since "The top is all Strings"
              String line;
 
              while ((line = reader.readLine()) != null){
                  String[] parts = line.split("\\|");
-                 int
+                 String id = parts[0];
+                 String item = parts[1];
+                 double price = Double.parseDouble(parts[2]);
+                 String department = parts[3];
+                 inventory.add(new Product(id, item, price, department));
              }
+             reader.close();
 
          }catch(IOException e){
              System.err.println("Something went wrong " + e.getMessage());
@@ -80,8 +77,24 @@ public class Store {
     public static void displayProducts(ArrayList<Product> inventory,
                                        ArrayList<Product> cart,
                                        Scanner scanner) {
-        // TODO: show each product (id, name, price),
-        //       prompt for an id, find that product, add to cart
+        for (Product product : inventory) {
+            System.out.println(product);
+        }
+
+        System.out.print("Enter product ID to add to cart (X or x to return): ");
+        String id = scanner.nextLine();
+        for (Product product : inventory) {
+            if (product.id().equals(id)){
+                cart.add(product);
+                System.out.println(product.item() + " was added to your cart!");
+                product.addQuantity();
+
+            }
+            else if(id.equalsIgnoreCase("X")){
+                System.out.println("You are being sent back to the home page.");
+                return;
+            }
+        }
     }
 
     /**
@@ -89,11 +102,23 @@ public class Store {
      * and offers the option to check out.
      */
     public static void displayCart(ArrayList<Product> cart, Scanner scanner) {
-        // TODO:
-        //   • list each product in the cart
-        //   • compute the total cost
-        //   • ask the user whether to check out (C) or return (X)
-        //   • if C, call checkOut(cart, totalAmount, scanner)
+        for (Product product : cart) {
+            System.out.println(product + " | x" + product.quantity());
+
+            System.out.print("Enter (C or c) to check out or (X or x) to return back to the homepage: ");
+            String pick = scanner.nextLine();
+
+            if (pick.equalsIgnoreCase("C")) {
+                double subtotal = product.price() * product.quantity();
+                double tax = subtotal * 0.07;
+                double totalAmount = subtotal + tax;
+                System.out.printf("Your total is: $%.2f%n", totalAmount);
+            }
+            else if(pick.equalsIgnoreCase("X")){
+                System.out.println("You are being sent back to the home page.");
+                return;
+            }
+        }
     }
 
     /**
