@@ -149,13 +149,13 @@ public class Store {
         }
     }
 
-    /**
-     * Searches a list for a product by its id.
-     *
-     * @return the matching Product, or null if not found
-     */
+
     public static Product findProductById(String id, ArrayList<Product> inventory) {
-        // TODO: loop over the list and compare ids
+        for (Product product : inventory){
+            if (product.id(). equalsIgnoreCase(id)){
+                return product;
+            }
+        }
         return null;
     }
 }
