@@ -10,12 +10,10 @@ import java.util.Scanner;
 public class Store {
 
     public static void main(String[] args) {
-
         // Create lists for inventory and the shopping cart
         ArrayList<Product> inventory = new ArrayList<>();
         ArrayList<Product> cart = new ArrayList<>();
 
-        // Load inventory from the data file (pipe-delimited: SKU|Product Name|Price|Department)
         loadInventory("products.csv", inventory);
 
         // Main menu loop
@@ -30,11 +28,11 @@ public class Store {
 
             if (!scanner.hasNextInt()) {
                 System.out.println("Please enter 1, 2, or 3.");
-                scanner.nextLine();                 // discard bad input
+                scanner.nextLine().trim();
                 continue;
             }
             choice = scanner.nextInt();
-            scanner.nextLine();                     // clear newline
+            scanner.nextLine();
 
             switch (choice) {
                 case 1 -> displayProducts(inventory, cart, scanner);
@@ -78,7 +76,7 @@ public class Store {
         }
 
         System.out.print("Enter product ID to add to cart or (X) to return: ");
-        String id = scanner.nextLine();
+        String id = scanner.nextLine().trim();
 
         if (id.equalsIgnoreCase("X")) {
             System.out.println("You are being sent back to the home page.");
@@ -125,7 +123,7 @@ public class Store {
 
         // Ask the user to pick to check out or return home
         System.out.print("Enter (C) to check out or (X) to return to homepage: ");
-        String pick = scanner.nextLine();
+        String pick = scanner.nextLine().trim();
 
         if (pick.equalsIgnoreCase("C")) {
             checkOut(cart, totalAmount, scanner);
@@ -142,7 +140,7 @@ public class Store {
 
         System.out.printf("Your total is: $%.2f%n", totalAmount);
         System.out.print("Confirm purchase? (Y/N): ");
-        String confirm = scanner.nextLine();
+        String confirm = scanner.nextLine().trim();
 
         if (confirm.equalsIgnoreCase("Y")) {
             System.out.println("Your cart has been cleared. Thank you for your purchase!");
